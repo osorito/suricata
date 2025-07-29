@@ -1,0 +1,7 @@
+jq 'select(.event_type == "alert")' ./logs/eve.json
+
+
+jq 'select(.event_type=="alert" and (.alert.signature | test("DDoS|virus|malware|trojan|exploit"; "i"))) | {timestamp, src_ip, dest_ip, alert}' ./logs/eve.json
+
+
+jq 'select(.event_type=="alert" and (.alert.signature | test("DDoS|virus|malware|trojan|exploit"; "i"))) | {timestamp, src_ip, dest_ip, alert}' eve.json

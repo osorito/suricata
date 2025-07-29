@@ -1,0 +1,33 @@
+Suricata does not automatically fetch external IP blocklists or threat feeds. You need to **download the list yourself** and convert it into Suricata rule format.
+
+### Steps to use a threat feed with Suricata:
+
+1. **Download the list of malicious IPs**
+   Example (using Emerging Threats):
+   ```sh
+   curl -o /tmp/compromised-ips.txt https://rules.emergingthreats.net/blockrules/compromised-ips.txt
+   ```
+
+2. **Convert the IPs into Suricata rules**
+   Example script:
+   ```sh
+   awk '/^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$/ {print "alert ip 10.0.0.0/24 any -> "$1" any (msg:\"Outbound connection to known malware host\"; sid:1001000; rev:1;)"}' /tmp/compromised-ips.txt > /home/node/suricata/rules/malicious_ips.rules
+   ```
+
+3. **Include the new rule file in Suricata’s config**
+   Edit your `suricata.yaml`:
+   ````yaml
+   # ...existing code...
+   rule-files:
+     - suricata.rules
+     - malicious_ips.rules
+   # ...existing code...
+   ````
+
+4. **Restart Suricata**
+   ```sh
+   docker-compose restart
+   ```
+
+**Summary:**
+Suricata does not fetch lists automatically. You must download, convert, and include them as rule files. Automate this process with a script for regular updates.

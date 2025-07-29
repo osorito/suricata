@@ -1,0 +1,16 @@
+services:
+  suricata:
+    image: jasonish/suricata:latest
+    container_name: suricata
+    network_mode: host
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
+      - SYS_NICE
+    volumes:
+      - ./logs:/var/log/suricata
+      - ./rules:/var/lib/suricata/rules
+
+    command: suricata -i eth0 -c /etc/suricata/suricata.yaml --pidfile /var/run/suricata.pid --set default-log-dir=/var/log/suricata
+
+    restart: "no"

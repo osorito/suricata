@@ -1,0 +1,14 @@
+# Detect SYN flood (many SYN packets from one host)
+alert tcp 10.0.0.0/24 any -> any 80 (msg:"Possible SYN Flood from Internal Device"; flags:S; threshold:type threshold, track by_src, count 100, seconds 1; sid:1000002; rev:1;)
+
+# Detect excessive HTTP requests from internal device
+alert http 10.0.0.0/24 any -> any any (msg:"Possible HTTP DDoS from Internal Device"; flow:to_server,established; threshold:type threshold, track by_src, count 200, seconds 10; sid:1000003; rev:1;)
+
+# Detect UDP flood (many UDP packets from one host)
+alert udp 10.0.0.0/24 any -> any any (msg:"Possible UDP Flood from Internal Device"; threshold:type threshold, track by_src, count 500, seconds 10; sid:1000004; rev:1;)
+
+# Detect suspicious file downloads (e.g., .exe from HTTP)
+alert http 10.0.0.0/24 any -> any any (msg:"Suspicious EXE download"; flow:to_client,established; content:".exe"; http_header; sid:1000011; rev:1;)
+
+# Detect base64 encoded powershell in HTTP traffic
+alert http 10.0.0.0/24 any -> any any (msg:"Possible Powershell encoded command"; content:"powershell"; nocase; content:"-EncodedCommand"; nocase; sid:1000012; rev:1;)

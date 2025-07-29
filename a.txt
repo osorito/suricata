@@ -1,0 +1,1 @@
+docker run --rm jasonish/suricata:latest cat /etc/suricata/suricata.yaml > ./config/suricata.yaml

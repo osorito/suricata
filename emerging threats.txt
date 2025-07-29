@@ -1,0 +1,30 @@
+
+Used 1 reference
+To add or include the Emerging Threats rules in Suricata, follow these steps:
+
+1. Download Emerging Threats rules
+
+wget https://rules.emergingthreats.net/open/suricata/emerging.rules.tar.gz
+2. Extract the rules
+
+tar -xzf emerging.rules.tar.gz
+3. Copy the rules to your Suricata rules directory
+
+cp emerging.rules/*.rules /home/node/suricata/rules/
+4. Edit your suricata.yaml to include the new rules
+Add the rule files to the rule-files section:
+
+
+rule-files:  
+- suricata.rules  
+- malicious_ips.rules  
+- emerging-dos.rules  
+- emerging-malware.rules  
+- emerging-trojan.rules  
+- emerging-exploit.rules 
+ # ...add other .rules files as needed...
+5. Restart Suricata
+
+docker-compose restart
+Summary:
+Download, extract, and copy the Emerging Threats rules to your rules directory, then list them in suricata.yaml under rule-files and restart Suricata. This will enable detection for DDoS, virus, malware, trojan, and exploit threats.

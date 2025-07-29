@@ -6,4 +6,28 @@ rule-files:
   - emerging-malware.rules
   - emerging-trojan.rules
   - emerging-exploit.rules
+  - emerging-attack_response.rules
+  - emerging-botcc.rules
+  - emerging-ciarmy.rules
+  - emerging-deleted.rules
+  - emerging-dns.rules
+  - emerging-fwrules.rules
+  - emerging-icmp.rules
+  - emerging-info.rules
+  - emerging-netbios.rules
+  - emerging-p2p.rules
+  - emerging-policy.rules
+  - emerging-pop3.rules
+  - emerging-rpc.rules
+  - emerging-scada.rules
+  - emerging-scan.rules
+  - emerging-shellcode.rules
+  - emerging-snmp.rules
+  - emerging-smtp.rules
+  - emerging-sql.rules
+  - emerging-telnet.rules
+  - emerging-user_agents.rules
+  - emerging-web_client.rules
+  - emerging-web_server.rules
+  - emerging-worm.rules
 # ...existing code...

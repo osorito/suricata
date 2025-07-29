@@ -2,4 +2,8 @@
 rule-files:
   - suricata.rules
   - malicious_ips.rules
+  - emerging-dos.rules
+  - emerging-malware.rules
+  - emerging-trojan.rules
+  - emerging-exploit.rules
 # ...existing code...

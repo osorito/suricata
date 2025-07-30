@@ -5,3 +5,14 @@ jq 'select(.event_type=="alert" and (.alert.signature | test("DDoS|virus|malware
 
 
 jq 'select(.event_type=="alert" and (.alert.signature | test("DDoS|virus|malware|trojan|exploit"; "i"))) | {timestamp, src_ip, dest_ip, alert}' eve.json
+
+
+jq 'select(.event_type=="alert") | {timestamp, src_ip, dest_ip, alert}' eve.json
+
+
+jq 'select(.event_type=="alert" and (.alert.signature | test("block|deny|policy|not allowed|forbidden"; "i") or (.alert.category | test("Policy"; "i"))) ) | {timestamp, src_ip, dest_ip, alert}' eve.json
+jq 'select(type=="object" and .event_type=="alert" and (.alert.signature | test("block|deny|policy|not allowed|forbidden"; "i") or (.alert.category | test("Policy"; "i"))) ) | {timestamp, src_ip, dest_ip, alert}' eve.json
+
+
+
+jq 'select(type=="object" and .event_type=="alert" and (.alert.signature | test("block|deny|policy|not allowed|forbidden"; "i") or (.alert.category | test("Policy"; "i"))) ) | {timestamp, src_ip, dest_ip, alert}' eve.json

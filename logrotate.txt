@@ -1,0 +1,10 @@
+// filepath: /etc/logrotate.d/suricata
+/home/node/suricata/logs/*.log
+/home/node/suricata/logs/*.json {
+    size 100M
+    rotate 5
+    compress
+    missingok
+    notifempty
+    copytruncate
+}

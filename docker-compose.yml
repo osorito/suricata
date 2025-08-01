@@ -10,6 +10,7 @@ services:
     volumes:
       - ./logs:/var/log/suricata
       - ./rules:/var/lib/suricata/rules
+      - ./config/suricata.yaml:/etc/suricata/suricata.yaml # <--- ADD THIS LINE
 
     command: suricata -i eth0 -c /etc/suricata/suricata.yaml --pidfile /var/run/suricata.pid --set default-log-dir=/var/log/suricata
 

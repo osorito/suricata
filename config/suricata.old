@@ -1,0 +1,61 @@
+%YAML 1.1
+---
+# default capture-method is pcap
+# set to af-packet for linux or netmap for freebsd
+# set to winpcap for windows
+# set to pfring for pfring
+# set to sse
+capture-method: af-packet
+
+default-rule-path: /var/lib/suricata/rules # <--- ADD THIS LINE
+
+af-packet:
+  - interface: eth0
+    # ...existing code...
+    snaplen: 0
+    # ...existing code...
+outputs:
+  - eve-log:
+      enabled: yes
+      filetype: regular
+      file: eve.json
+      # You might want to include various event types
+      types:
+        - alert
+        - flow
+        - dns # Very important for this use case
+        - http # Also good for seeing Host headers
+      ethernet: yes
+# ...existing code...
+rule-files:
+  - suricata.rules
+  - malicious_ips.rules
+  - emerging-dos.rules
+  - emerging-malware.rules
+  - emerging-trojan.rules
+  - emerging-exploit.rules
+  - emerging-attack_response.rules
+  - emerging-botcc.rules
+  - emerging-ciarmy.rules
+  - emerging-deleted.rules
+  - emerging-dns.rules
+  - emerging-fwrules.rules
+  - emerging-icmp.rules
+  - emerging-info.rules
+  - emerging-netbios.rules
+  - emerging-p2p.rules
+  - emerging-policy.rules
+  - emerging-pop3.rules
+  - emerging-rpc.rules
+  - emerging-scada.rules
+  - emerging-scan.rules
+  - emerging-shellcode.rules
+  - emerging-snmp.rules
+  - emerging-smtp.rules
+  - emerging-sql.rules
+  - emerging-telnet.rules
+  - emerging-user_agents.rules
+  - emerging-web_client.rules
+  - emerging-web_server.rules
+  - emerging-worm.rules
+# ...existing code...

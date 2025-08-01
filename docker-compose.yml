@@ -14,3 +14,5 @@ services:
     command: suricata -i eth0 -c /etc/suricata/suricata.yaml --pidfile /var/run/suricata.pid --set default-log-dir=/var/log/suricata
 
     restart: "no"
+    environment:
+      - TZ=America/New_York

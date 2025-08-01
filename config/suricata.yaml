@@ -3,6 +3,17 @@ af-packet:
     # ...existing code...
     snaplen: 0
     # ...existing code...
+outputs:
+  - eve-log:
+      enabled: yes
+      file: eve.json
+      # You might want to include various event types
+      types:
+        - alert
+        - flow
+        - dns # Very important for this use case
+        - http # Also good for seeing Host headers
+      ethernet: yes
 # ...existing code...
 rule-files:
   - suricata.rules

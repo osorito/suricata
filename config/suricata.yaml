@@ -6,6 +6,7 @@ af-packet:
 outputs:
   - eve-log:
       enabled: yes
+      filetype: regular
       file: eve.json
       # You might want to include various event types
       types:

@@ -17,3 +17,5 @@ services:
     restart: "no"
     environment:
       - TZ=America/New_York
+    stdin_open: true
+    tty: true
